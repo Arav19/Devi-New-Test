@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      // Allow read/write if the user is authenticated and accessing their own document
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Add this temporary rule for debugging (REMOVE IN PRODUCTION)
+      allow read: if true;  // Temporarily allow all reads
+    }
+
+    match /chats/{chatId} {
+      // Allow users to create and read their own chat documents
+      allow create: if request.auth != null 
+        && request.resource.data.userId == request.auth.uid;
+      allow read: if request.auth != null 
+        && resource.data.userId == request.auth.uid;
+      allow update: if request.auth != null 
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid;
+    }
+  }
+}

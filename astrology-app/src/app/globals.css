@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    background-color: #220038;
+  }
+  
+  body {
+    @apply text-white bg-gradient-to-b from-[#220038] via-[#150030] to-[#220038];
+  }
+}
+
+/* Typing Animation for Chat */
+@keyframes typing {
+  0% { opacity: .2; }
+  20% { opacity: 1; }
+  100% { opacity: .2; }
+}
+
+/* Star Animations */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes flow {
+  0% { background-position: 0% 50%; opacity: 0.1; }
+  25% { opacity: 0.8; }
+  50% { background-position: 100% 50%; opacity: 0.3; }
+  75% { opacity: 0.8; }
+  100% { background-position: 0% 50%; opacity: 0.1; }
+}
+
+/* Animation Classes */
+.animate-twinkle {
+  animation: twinkle 3s infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Typing Indicator Styles */
+.typing-indicator {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 60px;
+}
+
+.typing-indicator::before {
+  content: '...';
+  position: absolute;
+  left: 0;
+  height: 100%;
+  animation: typing 1.4s infinite;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: #594383;
+}
+
+/* Make sure the StarField stays behind */
+.starfield {
+  z-index: 0 !important;
+}
+
+/* Phone Input Styles */
+.react-tel-input {
+  position: relative;
+  z-index: 60 !important;
+}
+
+/* Flag and Dropdown */
+.react-tel-input .flag-dropdown {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.react-tel-input .selected-flag {
+  background-color: transparent !important;
+  width: 55px !important;
+}
+
+.react-tel-input .selected-flag .arrow {
+  border-top-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.react-tel-input .selected-flag .arrow.up {
+  border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Country List */
+.react-tel-input .country-list {
+  position: absolute !important;
+  z-index: 70 !important;
+  background-color: #220038 !important;
+  width: 300px !important;
+  margin-top: 8px !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border-radius: 0.5rem !important;
+  max-height: 240px !important;
+  overflow-y: auto !important;
+  bottom: auto !important;
+}
+
+/* Search Box */
+.react-tel-input .search-container,
+.react-tel-input .search-box,
+.react-tel-input .search {
+  background-color: #220038 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+.react-tel-input .search-box {
+  color: white !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important;
+  padding: 10px !important;
+  padding-left: 10px !important;
+  width: 100% !important;
+  background-image: none !important;
+}
+
+.react-tel-input .search-box::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Hide search icon */
+.react-tel-input .search-box + div {
+  display: none !important;
+}
+
+/* Country Items */
+.react-tel-input .country-list .country {
+  padding: 8px 10px !important;
+  background-color: transparent !important;
+}
+
+/* Remove any default active states */
+.react-tel-input .country-list .country.active,
+.react-tel-input .country-list .country.highlight {
+  background-color: transparent !important;
+}
+
+/* Style the currently selected country */
+.react-tel-input .country-list .country[aria-selected="true"] {
+  background-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Hover state */
+.react-tel-input .country-list .country:hover {
+  background-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Text Colors */
+.react-tel-input .country-list .country .country-name {
+  color: white !important;
+}
+
+.react-tel-input .country-list .country .dial-code {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.react-tel-input .country-list .country[aria-selected="true"] .dial-code {
+  color: white !important;
+}
+
+/* Scrollbar */
+.react-tel-input .country-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.react-tel-input .country-list::-webkit-scrollbar-track {
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.react-tel-input .country-list::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+/* Additional fix for any parent containers */
+.react-tel-input .country-list .search {
+  background-color: #220038 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Base container and input */
+.mapboxgl-ctrl-geocoder {
+  width: 100% !important;
+  max-width: none !important;
+  box-shadow: none !important;
+  background-color: rgb(168 85 247 / 0.1) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border-radius: 0.5rem !important;
+  height: 42px !important;
+}
+
+/* Input and its states */
+.mapboxgl-ctrl-geocoder--input {
+  padding: 0.5rem 2.5rem !important;
+  height: 42px !important;
+  color: white !important;
+  background-color: transparent !important;
+  border-radius: 0.5rem !important;
+}
+
+/* Remove focus outline */
+.mapboxgl-ctrl-geocoder--input:focus {
+  outline: none !important;
+}
+
+.mapboxgl-ctrl-geocoder--input::placeholder {
+  color: white !important;
+  opacity: 0.5 !important;
+}
+
+/* Icons */
+.mapboxgl-ctrl-geocoder--icon {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Search icon positioning */
+.mapboxgl-ctrl-geocoder--icon-search {
+  top: 8px !important;
+  left: 8px !important;
+}
+
+.mapboxgl-ctrl-geocoder--button {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 7px !important; /* Align with search icon */
+  right: 7px !important;
+}
+
+.mapboxgl-ctrl-geocoder--button svg {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Suggestions container */
+.mapboxgl-ctrl-geocoder .suggestions {
+  background-color: #220038 !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border-radius: 0.5rem !important;
+  margin-top: 8px !important;
+}
+
+/* Individual suggestion - target all text elements */
+.mapboxgl-ctrl-geocoder .suggestions > .suggestion,
+.mapboxgl-ctrl-geocoder .suggestions > .suggestion .suggestion-title,
+.mapboxgl-ctrl-geocoder .suggestions > .suggestion strong {
+  color: white !important;
+  background-color: transparent !important;
+  padding: 8px 12px !important;
+}
+
+/* Suggestion hover/active */
+.mapboxgl-ctrl-geocoder .suggestions > .suggestion:hover,
+.mapboxgl-ctrl-geocoder .suggestions > .suggestion.active {
+  background-color: rgba(168, 85, 247, 0.2) !important;
+}
+
+/* Address text in suggestion */
+.mapboxgl-ctrl-geocoder .suggestions > .suggestion .suggestion-address {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Add these styles for date and time inputs */
+input[type="date"],
+input[type="time"] {
+  min-height: 42px !important;
+  height: 42px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  font-size: 0.98rem !important;
+}
+
+/* Ensure consistent padding and text color on iOS */
+input[type="date"],
+input[type="time"],
+input[type="date"]::-webkit-datetime-edit,
+input[type="time"]::-webkit-datetime-edit {
+  padding: 8px 6px !important;
+  color: white !important;
+}
+
+/* Fix calendar/clock icon color */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) !important;
+  opacity: 0.5 !important;
+}
+
+select {
+  min-height: 42px !important;
+  height: 42px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+  background-position: right 0.5rem center !important;
+  background-repeat: no-repeat !important;
+  background-size: 1.5em 1.5em !important;
+  padding-right: 2.5rem !important;
+}
+
